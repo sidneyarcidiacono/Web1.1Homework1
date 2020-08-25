@@ -98,3 +98,35 @@ def test_multiply_123_456():
     result_page_text = res.get_data(as_text=True)
     expected_page_text = '123 times 456 is 56088.'
     assert expected_page_text == result_page_text
+
+def test_sayntimes_random_5():
+    """Test sayntimes/word/number route"""
+    res = app.test_client().get('sayntimes/random/5')
+    assert res.status_code == 200
+
+    result_page_text = res.get_data(as_text=True)
+    expected_page_text = 'random random random random random '
+    assert expected_page_text == result_page_text
+
+def test_reverse_random():
+    """Test /reverse/word route"""
+    res = app.test_client().get('/reverse/random')
+    assert res.status_code == 200
+
+    result_page_text = res.get_data(as_text=True)
+    expected_page_text = 'modnar'
+    assert expected_page_text == result_page_text
+
+def test_strangecaps_hello():
+    """Test /strangecaps/word route"""
+    res = app.test_client().get('/strangecaps/hello')
+    assert res.status_code == 200
+
+    result_page_text = res.get_data(as_text=True)
+    expected_page_text = 'HeLlO'
+    assert expected_page_text == result_page_text
+
+def test_dicegame():
+    res = app.test_client().get('/dicegame')
+    assert res.status_code == 200
+    
